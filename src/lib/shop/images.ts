@@ -1,0 +1,14 @@
+import a0 from '@/assets/products/0.asset.json';
+import a1 from '@/assets/products/1.asset.json';
+import a2 from '@/assets/products/2.asset.json';
+import a3 from '@/assets/products/3.asset.json';
+import a4 from '@/assets/products/4.asset.json';
+import a5 from '@/assets/products/5.asset.json';
+import a6 from '@/assets/products/6.asset.json';
+import a7 from '@/assets/products/7.asset.json';
+import a8 from '@/assets/products/8.asset.json';
+import a9 from '@/assets/products/9.asset.json';
+import a10 from '@/assets/products/10.asset.json';
+import a11 from '@/assets/products/11.asset.json';
+export const productImages=[a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11].map(a=>a.url);
+export const productImage=(index:number,url?:string|null)=>url||productImages[index]||a0.url;

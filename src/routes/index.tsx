@@ -1,23 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { HomePage } from '@/components/shop/storefront';
+import { catalogOptions } from '@/lib/shop/catalog.functions';
 export const Route = createFileRoute("/")({
-  component: Index,
+  loader: ({context})=>context.queryClient.ensureQueryData(catalogOptions),
+  head: ()=>({meta:[{title:'KASHUR KART · कशुर कार्ट | Fresh groceries in Kashmir'},{name:'description',content:'Shop fresh produce, milk, groceries and daily essentials. Local doorstep delivery across Kashmir.'},{property:'og:title',content:'KASHUR KART · Your neighbourhood grocery store'},{property:'og:description',content:'Fresh groceries and daily essentials delivered across Kashmir.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),
+  component: HomePage,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}

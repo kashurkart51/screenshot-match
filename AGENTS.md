@@ -28,3 +28,10 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Application architecture
+- Keep public storefront pages in TanStack file routes, with shared shop state and navigation under the root provider, so direct links and mobile navigation share the same basket.
+- Read the public catalog through a publishable-client server function and TanStack Query; private operations use the generated browser client with RLS, so account records remain user-scoped.
+- Place orders only through the transactional `place_order` database function, which validates stock, prices, coupons, delivery area and address ownership before committing.
+- Keep roles in protected user_roles; owner and delivery screens never confer privileges, and all management writes require server-enforced policies.
+- Store grocery imagery as asset pointers and keep presentation tokens in the global stylesheet, so media stays out of source and the storefront remains theme-consistent.
